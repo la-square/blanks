@@ -52,9 +52,7 @@ chown -R hotdog:hotdog /home/hotdog
 sed -i "s/ident/md5/g" /var/lib/pgsql/data/pg_hba.conf
 postgresql-setup initdb
 
-systemctl enable postgresql
 systemctl start postgresql.service
 
 #-> nginx
-systemctl enable nginx
 service start nginx.service
