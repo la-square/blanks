@@ -55,4 +55,4 @@ postgresql-setup initdb
 systemctl start postgresql.service
 
 #-> nginx
-service start nginx.service
+systemctl start nginx.service
