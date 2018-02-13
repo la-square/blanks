@@ -6,19 +6,54 @@
 #use 4th arg force for re-init database with drop current version
 
 #Example: 
-#psql-init-db.sh project_db user_db 12345
-#psql-init-db.sh project_db user_db 12345 force
+#psql-init-db.sh -n project_db -u user_db -p 12345
+#psql-init-db.sh -n project_db -u user_db -p 12345 -f force
 
-DB_NAME=$1
-DB_USER=$2
-DB_PASS=$3
+#----------------------------------------------------------------------------
+#Check options
 
-IS_FORCE=$4
+while [[ $# -gt 1 ]]
+do
+	key="$1"
+	case $key in
+		-n|--name)
+		DB_NAME=$2
+		shift ;;
+		-u|--user)
+		DB_USER=$2
+		shift ;;
+		-p|--pass)
+		DB_PASS=$2
+		shift ;;
+		-f|--force)
+		IS_FORCE=$2
+		shift ;;
+	esac
+	shift
+done
+
+if [[ $DB_NAME = "" ]]; then
+	echo "ERR: forgot DB_NAME attr."
+	exit 1
+fi
+
+if [[ $DB_USER = "" ]]; then
+	echo "ERR: forgot DB_USER attr."
+	exit 1
+fi
+
+if [[ $DB_PASS = "" ]]; then
+	echo "ERR: forgot DB_PASS attr."
+	exit 1
+fi
 
 if [[ $IS_FORCE = "force" ]]; then
     sudo -u postgres psql postgres -c "DROP DATABASE ${DB_NAME};"
     sudo -u postgres psql postgres -c "DROP USER ${DB_USER};"
 fi
+
+#----------------------------------------------------------------------------
+#DB operations
 
 sudo -u postgres psql postgres -c "CREATE DATABASE ${DB_NAME};"
 sudo -u postgres psql postgres -c "CREATE USER ${DB_USER} WITH PASSWORD '${DB_PASS}';"
