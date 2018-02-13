@@ -28,10 +28,12 @@ done
 
 if [[ $APP_NAME = "" ]]; then
 	echo "ERR: forgot APP_NAME attr."
+	exit 1
 fi
 
 if [[ $VENV_FOLDER = "" ]]; then
 	echo "ERR: forgot VENV_FOLDER attr."
+	exit 1
 fi
 
 

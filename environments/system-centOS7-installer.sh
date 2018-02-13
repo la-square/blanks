@@ -31,6 +31,7 @@ done
 
 if [[ $APP_NAME = "" ]]; then
 	echo "ERR: forgot APP_NAME attr."
+	exit 1
 fi
 
 #----------------------------------------------------------------------------
