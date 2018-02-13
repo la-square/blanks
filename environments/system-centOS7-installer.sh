@@ -10,6 +10,30 @@
 # - python35
 # - custom vim
 
+#Script takes a value: -n project_name
+
+#Example: 
+#system-centOS7-installer -n burokrat
+
+#----------------------------------------------------------------------------
+#Check options
+
+while [[ $# -gt 1 ]]
+do
+	key="$1"
+	case $key in
+		-n|--name)
+		APP_NAME=$2
+		shift ;;
+	esac
+	shift
+done
+
+echo "$APP_NAME"
+
+if [[ $APP_NAME = "" ]]; then
+	echo "ERR: forgot APP_NAME attr."
+fi
 
 #----------------------------------------------------------------------------
 #Package install
@@ -42,9 +66,9 @@ update-alternatives --set editor /usr/bin/vim.basic
 
 #-> prepair user
 useradd -m hotdog -s /bin/bash
-cp ~/.vimrc /home/hotdog
 
 chown -R hotdog:hotdog /home/hotdog
+mkdir  /home/hotdog/$APP_NAME
 
 
 #----------------------------------------------------------------------------
