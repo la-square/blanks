@@ -3,9 +3,10 @@
 
 #Installing a set of utilities for the django web-server
 # - system user
+# - systemd
+# - sudo 
 # - nginx
 # - postgres
-# - systemd
 # - python35
 # - custom vim
 
@@ -17,6 +18,7 @@ yes Y | yum install epel-release
 yes Y | yum update
 
 yes Y | yum install gcc
+yes Y | yum install sudo
 yes Y | yum install systemd
 yes Y | yum install memcached
 
