@@ -60,7 +60,7 @@ User=hotdog
 Group=hotdog
 WorkingDirectory=/home/hotdog/$APP_NAME/djapp
 ExecStart=/home/hotdog/$APP_NAME/$VENV_FOLDER/bin/gunicorn --workers 1 --bind \
-      unix:/home/hotdog/$APP_NAME/djapp/$APP_NAME.sock configuration.wsgi:application
+      unix:/home/hotdog/$APP_NAME/$APP_NAME.sock configuration.wsgi:application
 [Install]
 WantedBy=multi-user.target
 
