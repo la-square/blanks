@@ -7,6 +7,9 @@
 #Example: 
 #venv-additional-lib.sh -n project -v .venv_projectname -p django-resized
 
+#Require:
+#installed python35, init python env on server
+
 #----------------------------------------------------------------------------
 #Check options
 

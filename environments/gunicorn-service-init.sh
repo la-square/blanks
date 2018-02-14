@@ -7,6 +7,9 @@
 #Example: 
 #gunicorn-service-init.sh -n app_name -v .venv_name
 
+#Require:
+#installed gunicorn service
+
 #----------------------------------------------------------------------------
 #Check options
 

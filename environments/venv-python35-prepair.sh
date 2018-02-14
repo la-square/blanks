@@ -9,6 +9,9 @@
 #Example: 
 #venv-python35-prepair.sh -n project -v .venv_projectname
 
+#Require:
+#installed python35
+
 #----------------------------------------------------------------------------
 #Check options
 

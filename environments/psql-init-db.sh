@@ -9,6 +9,9 @@
 #psql-init-db.sh -n project_db -u user_db -p 12345
 #psql-init-db.sh -n project_db -u user_db -p 12345 -f force
 
+#Require:
+#installed postgresql
+
 #----------------------------------------------------------------------------
 #Check options
 
