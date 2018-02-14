@@ -16,6 +16,7 @@ mkdir /etc/nginx/sites-enabled
 
 mkdir /etc/nginx/conf.d
 mv /etc/nginx/mime.types /etc/nginx/conf.d
+rm -rf /etc/nginx/mime.types.default
 
 rm -rf /etc/nginx/fastcgi.conf
 rm -rf /etc/nginx/fastcgi.conf.default
