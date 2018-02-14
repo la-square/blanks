@@ -67,7 +67,7 @@ update-alternatives --set editor /usr/bin/vim.basic
 useradd -m hotdog -s /bin/bash
 
 chown -R hotdog:hotdog /home/hotdog
-mkdir  /home/hotdog/$APP_NAME
+mkdir -p /home/hotdog/$APP_NAME/djapp
 
 
 #----------------------------------------------------------------------------
