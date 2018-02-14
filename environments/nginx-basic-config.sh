@@ -72,6 +72,27 @@ http {
 	client_header_buffer_size 1M;
 	large_client_header_buffers 128 8k;
 
+	gzip  on;
+	gzip_buffers 16 8k;
+	gzip_comp_level 6;
+	gzip_http_version 1.1;
+	gzip_min_length 256;
+	gzip_proxied any;
+	gzip_vary on;
+	gzip_types
+		text/xml application/xml application/atom+xml application/rss+xml application/xhtml+xml image/svg+xml
+		text/javascript application/javascript application/x-javascript
+		text/x-json application/json application/x-web-app-manifest+json
+		text/css text/plain text/x-component
+		font/opentype application/x-font-ttf application/vnd.ms-fontobject
+		image/x-icon;
+	gzip_disable  "msie6";
+
+	open_file_cache max=1000 inactive=20s;
+	open_file_cache_valid 30s;
+	open_file_cache_min_uses 2;
+	open_file_cache_errors on;
+
 	open_file_cache max=4096;
 	include sites-enabled/*;
 }
