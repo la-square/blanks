@@ -2,10 +2,10 @@
 
 #Script init gunicorn service for application.
 
-#Script takes a value: app_name, venv_name
+#Script takes a value: app_name
 
 #Example: 
-#gunicorn-service-init.sh -n app_name -v .venv_name
+#gunicorn-service-init.sh -n app_name
 
 #Require:
 #installed gunicorn service
@@ -20,20 +20,12 @@ do
         -n|--name)
         APP_NAME=$2
         shift ;;
-        -v|--venv)
-        VENV_FOLDER=$2
-        shift ;;
     esac
     shift
 done
 
 if [[ $APP_NAME = "" ]]; then
 	echo "ERR: forgot APP_NAME attr."
-	exit 1
-fi
-
-if [[ $VENV_FOLDER = "" ]]; then
-	echo "ERR: forgot VENV_FOLDER attr."
 	exit 1
 fi
 
@@ -59,7 +51,7 @@ After=network.target
 User=hotdog
 Group=hotdog
 WorkingDirectory=/home/hotdog/$APP_NAME/djapp
-ExecStart=/home/hotdog/$APP_NAME/$VENV_FOLDER/bin/gunicorn --workers 1 --bind \
+ExecStart=/home/hotdog/$APP_NAME/.venv_$APP_NAME/bin/gunicorn --workers 1 --bind \
       unix:/home/hotdog/$APP_NAME/$APP_NAME.sock configuration.wsgi:application
 [Install]
 WantedBy=multi-user.target
