@@ -52,6 +52,7 @@ yes Y | yum install postgresql-contrib
 yes Y | yum -y install https://centos7.iuscommunity.org/ius-release.rpm
 yes Y | yum -y install python35u
 yes Y | yum -y install python35u-pip
+yes Y | yum -y install python35u-devel.x86_64
 
 yum -y install nginx
 
