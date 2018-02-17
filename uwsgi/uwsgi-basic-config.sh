@@ -52,7 +52,7 @@ EOF
 #Prepair uwsgi daemon
 
 rm -rf /etc/systemd/system/uwsgi.service
-mkdir /etc/systemd/system/uwsgi.service
+touch /etc/systemd/system/uwsgi.service
 cat >> /etc/systemd/system/uwsgi.service << EOF
 [Unit]
 Description=uWSGI
