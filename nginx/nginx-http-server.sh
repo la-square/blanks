@@ -43,6 +43,8 @@ fi
 rm -rf /etc/nginx/sites-available/$APP_NAME
 touch  /etc/nginx/sites-available/$APP_NAME
 
+mkdir /home/hotdog/$APP_NAME/logs/nginx
+
 cat >> /etc/nginx/sites-available/$APP_NAME << EOF
 upstream $APP_NAME {
     server unix:///home/hotdog/$APP_NAME/$APP_NAME.sock;
@@ -54,8 +56,8 @@ server {
     server_name www.$HOST_NAME, $HOST_NAME;
     client_max_body_size 3g;
 
-    error_log  /home/hotdog/error error;
-    access_log /home/hotdog/access;
+    error_log  /home/hotdog/$APP_NAME/logs/nginx/error.log error;
+    access_log /home/hotdog/$APP_NAME/logs/nginx/access.log;
 
     location / {
         proxy_pass            http://$APP_NAME;
