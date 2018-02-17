@@ -37,7 +37,7 @@ mkdir /home/hotdog/$APP_NAME/logs/uwsgi
 touch /home/hotdog/$APP_NAME/logs/uwsgi/uwsgi.log
 
 touch /etc/uwsgi/applications/uwsgi_${APP_NAME}.ini
-cat >> /etc/nginx/sites-available/$APP_NAME << EOF
+cat >> /etc/uwsgi/applications/uwsgi_${APP_NAME}.ini << EOF
 [uwsgi]
 socket = /home/hotdog/$APP_NAME/${APP_NAME}.sock
 chmod-socket = 666
