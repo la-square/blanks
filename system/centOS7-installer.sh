@@ -69,6 +69,8 @@ useradd -m hotdog -s /bin/bash
 chown -R hotdog:hotdog /home/hotdog
 mkdir -p /home/hotdog/$APP_NAME/djapp
 mkdir -p /home/hotdog/$APP_NAME/madia
+mkdir -p /home/hotdog/$APP_NAME/logs
+mkdir -p /home/hotdog/$APP_NAME/static
 
 
 #----------------------------------------------------------------------------
