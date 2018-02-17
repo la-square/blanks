@@ -29,7 +29,7 @@ git clone git@github.com:la-square/blanks-applications.git
 
 for app in ${components[*]}
 do
-	cp -r $components_path/app $django_path/
+	cp -r $components_path/app/* $django_path/
 done
 
 #init nginx and uwsgi
