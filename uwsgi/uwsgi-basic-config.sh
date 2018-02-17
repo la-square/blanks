@@ -12,6 +12,8 @@
 #Prepair uwsgi
 
 mkdir -p /etc/uwsgi/applications
+rm -rf /etc/uwsgi/main_uwsgi.ini
+
 touch /etc/uwsgi/main_uwsgi.ini
 cat >> /etc/uwsgi/main_uwsgi.ini << EOF
 [uwsgi]
