@@ -62,7 +62,7 @@ http {
 	types_hash_max_size 2048;
 	server_names_hash_bucket_size 512;
 
-	include conf.d/mime_types.conf;
+	include conf.d/mime.types;
 	default_type application/octet-stream;
 
 	access_log /var/log/nginx/access.log combined buffer=4m flush=1s;
