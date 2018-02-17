@@ -44,7 +44,7 @@ done
 
 #----->
 #init uwsgi
-$states_path/uwsgi/uwsgi-basic-config.sh
+$states_path/uwsgi/uwsgi-basic-config.sh 	-n $project_name
 $states_path/uwsgi/uwsgi-app-config.sh 		-n $project_name
 
 
