@@ -44,7 +44,7 @@ source $venv_path/bin/activate
 #----------------------------------------------------------------------------
 #Install required pkgs
 
-pip install django==1.9
+pip install django==2.0.2
 pip install psycopg2==2.7.1
 pip install gunicorn
 
