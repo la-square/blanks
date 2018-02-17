@@ -27,7 +27,7 @@ $states_path/postgres/psql-init-db.sh       -n db_$project_name 	-u hotdog 	-p $
 #init project
 git clone git@github.com:la-square/blanks-applications.git
 
-for app in ${array[*]}
+for app in ${components[*]}
 do
 	cp -r $components_path/app $django_path/
 done
