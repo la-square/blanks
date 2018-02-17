@@ -36,8 +36,8 @@ fi
 SERVICE_NAME="$APP_NAME.service"
 
 rm -rf /etc/systemd/system/$SERVICE_NAME
-touch /etc/systemd/system/$SERVICE_NAME
-
+touch  /etc/systemd/system/$SERVICE_NAME
+mkdir  /home/hotdog/$APP_NAME/logs/gunicorn
 
 #----------------------------------------------------------------------------
 #Configure gunicorn settings
@@ -52,7 +52,9 @@ User=hotdog
 Group=hotdog
 WorkingDirectory=/home/hotdog/$APP_NAME/djapp
 ExecStart=/home/hotdog/$APP_NAME/.venv_$APP_NAME/bin/gunicorn --workers 1 --bind \
-      unix:/home/hotdog/$APP_NAME/$APP_NAME.sock configuration.wsgi:application
+    --errorlog  = "/home/hotdog/$APP_NAME/djapp/error.log"  \
+    --accesslog = "/home/hotdog/$APP_NAME/djapp/access.log" \
+    unix:/home/hotdog/$APP_NAME/$APP_NAME.sock configuration.wsgi:application
 [Install]
 WantedBy=multi-user.target
 
