@@ -46,6 +46,6 @@ source $venv_path/bin/activate
 
 pip install django==2.0.2
 pip install psycopg2==2.7.1
-pip install gunicorn
+pip install uwsgi
 
 pip3 install python3-memcached
