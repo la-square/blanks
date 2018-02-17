@@ -57,6 +57,7 @@ fi
 
 #----------------------------------------------------------------------------
 #DB operations
+chown -R hotdog:hotdog /home/hotdog
 
 sudo -u postgres psql postgres -c "CREATE DATABASE ${DB_NAME};"
 sudo -u postgres psql postgres -c "CREATE USER ${DB_USER} WITH PASSWORD '${DB_PASS}';"

@@ -40,6 +40,8 @@ rm -rf $venv_path && mkdir $venv_path
 python3.5 -m venv $venv_path
 source $venv_path/bin/activate
 
+chown -R hotdog:hotdog /home/hotdog
+
 
 #----------------------------------------------------------------------------
 #Install required pkgs

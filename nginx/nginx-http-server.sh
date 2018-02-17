@@ -96,5 +96,10 @@ EOF
 
 ln -s /etc/nginx/sites-available/$APP_NAME /etc/nginx/sites-enabled/
 
+
+#----------------------------------------------------------------------------
+#Restart daemon
+chown -R hotdog:hotdog /home/hotdog
+
 systemctl daemon-reload
 systemctl restart nginx.service

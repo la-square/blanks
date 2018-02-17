@@ -100,6 +100,7 @@ EOF
 
 #----------------------------------------------------------------------------
 #Restart daemon
+chown -R hotdog:hotdog /home/hotdog
 
 systemctl daemon-reload
 systemctl restart nginx.service

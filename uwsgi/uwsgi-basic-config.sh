@@ -59,7 +59,8 @@ Description=uWSGI
 After=syslog.target
 
 [Service]
-ExecStart=/home/hotdog/$APP_NAME/.venv_$APP_NAME/bin/uwsgi --ini /etc/uwsgi/main_uwsgi.ini
+ExecStart=/home/hotdog/$APP_NAME/.venv_$APP_NAME/bin/uwsgi --ini /etc/uwsgi/main_uwsgi.ini \
+--emperor /etc/uwsgi/vassals
 
 RuntimeDirectory=uwsgi
 Restart=always
@@ -75,6 +76,7 @@ EOF
 
 #----------------------------------------------------------------------------
 #Run uwsgi
+chown -R hotdog:hotdog /home/hotdog
 
 systemctl daemon-reload
 systemctl restart uwsgi.service

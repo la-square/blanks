@@ -61,6 +61,7 @@ EOF
 
 #----------------------------------------------------------------------------
 #Run uwsgi
+chown -R hotdog:hotdog /home/hotdog
 
 systemctl daemon-reload
 systemctl restart uwsgi.service

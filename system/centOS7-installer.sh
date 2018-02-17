@@ -73,6 +73,8 @@ mkdir -p /home/hotdog/$APP_NAME/media
 mkdir -p /home/hotdog/$APP_NAME/logs
 mkdir -p /home/hotdog/$APP_NAME/static
 
+chown -R hotdog:hotdog /home/hotdog
+
 
 #----------------------------------------------------------------------------
 #Prapair system services
