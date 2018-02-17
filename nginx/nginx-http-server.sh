@@ -2,10 +2,10 @@
 
 #Script init http server config for application
 
-#Script takes a value: app_name
+#Script takes a value: app_name, hostname
 
 #Example:
-#nginx-http-server.sh -n application_name
+#nginx-http-server.sh -n application_name, -h hostname
 
 #Require:
 #installed nginx service and confugered nginx.conf
@@ -20,12 +20,20 @@ do
         -n|--name)
         APP_NAME=$2
         shift ;;
+        -h|--name)
+        HOST_NAME=$2
+        shift ;;
     esac
     shift
 done
 
 if [[ $APP_NAME = "" ]]; then
     echo "ERR: forgot APP_NAME attr."
+    exit 1
+fi
+
+if [[ $HOST_NAME = "" ]]; then
+    echo "ERR: forgot HOST_NAME attr."
     exit 1
 fi
 
@@ -43,7 +51,7 @@ upstream $APP_NAME {
 
 server {
     listen 80;
-    server_name www.$APP_NAME, $APP_NAME;
+    server_name www.$HOST_NAME, $HOST_NAME;
     client_max_body_size 3g;
 
     error_log  /home/hotdog/error error;
