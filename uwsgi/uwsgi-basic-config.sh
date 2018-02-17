@@ -33,13 +33,13 @@ fi
 #----------------------------------------------------------------------------
 #Prepair uwsgi comfig
 
-mkdir -p /etc/uwsgi/applications
+mkdir -p /etc/uwsgi/vassals
 rm -rf /etc/uwsgi/main_uwsgi.ini
 
 touch /etc/uwsgi/main_uwsgi.ini
 cat >> /etc/uwsgi/main_uwsgi.ini << EOF
 [uwsgi]
-main_uwsgi = /etc/uwsgi/applications
+main_uwsgi = /etc/uwsgi/vassals
 uid = hotdog
 gid = hotdog
 master = true
@@ -72,3 +72,9 @@ NotifyAccess=all
 WantedBy=multi-user.target
 
 EOF
+
+#----------------------------------------------------------------------------
+#Run uwsgi
+
+systemctl daemon-reload
+systemctl restart uwsgi.service

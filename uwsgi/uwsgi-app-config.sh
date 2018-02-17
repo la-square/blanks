@@ -58,3 +58,10 @@ ignore-write-errors = true
 disable-write-exception = true
 
 EOF
+
+#----------------------------------------------------------------------------
+#Run uwsgi
+
+systemctl daemon-reload
+systemctl restart uwsgi.service
+
