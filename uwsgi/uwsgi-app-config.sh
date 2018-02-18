@@ -36,7 +36,8 @@ fi
 mkdir /home/hotdog/$APP_NAME/logs/uwsgi
 touch /home/hotdog/$APP_NAME/logs/uwsgi/uwsgi.log
 
-touch /etc/uwsgi/vassals/uwsgi_${APP_NAME}.ini
+rm -rf /etc/uwsgi/vassals/uwsgi_${APP_NAME}.ini
+touch  /etc/uwsgi/vassals/uwsgi_${APP_NAME}.ini
 cat >> /etc/uwsgi/vassals/uwsgi_${APP_NAME}.ini << EOF
 [uwsgi]
 socket = /home/hotdog/$APP_NAME/${APP_NAME}.sock
