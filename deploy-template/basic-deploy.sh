@@ -38,6 +38,10 @@ git clone git@github.com:la-square/blanks-applications.git
 
 for app in ${components[*]}
 do
+	for entry in $components_path/$app/*
+	do
+		rm -rf $django_path/$entry
+	done
 	cp -r $components_path/$app/* $django_path/
 done
 
