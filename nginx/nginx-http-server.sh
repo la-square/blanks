@@ -44,6 +44,8 @@ rm -rf /etc/nginx/sites-available/$APP_NAME
 touch  /etc/nginx/sites-available/$APP_NAME
 
 mkdir /home/hotdog/$APP_NAME/logs/nginx
+touch /home/hotdog/$APP_NAME/logs/nginx/error.log
+touch /home/hotdog/$APP_NAME/logs/nginx/access.log
 
 cat >> /etc/nginx/sites-available/$APP_NAME << EOF
 upstream $APP_NAME {
