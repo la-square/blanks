@@ -57,12 +57,14 @@ server {
     listen 80;
     server_name www.$HOST_NAME, $HOST_NAME;
     client_max_body_size 3g;
+    charset     utf-8;
 
     error_log  /home/hotdog/$APP_NAME/logs/nginx/error.log error;
     access_log /home/hotdog/$APP_NAME/logs/nginx/access.log;
 
     location / {
-        proxy_pass            http://$APP_NAME;
+        uwsgi_pass            $APP_NAME;
+        include               uwsgi_params;
     }
 
     location /media {

@@ -44,6 +44,7 @@ uid = hotdog
 gid = hotdog
 master = true
 enable-threads = true
+buffer-size = 32768
 
 EOF
 

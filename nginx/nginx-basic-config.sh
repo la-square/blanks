@@ -41,7 +41,7 @@ touch /etc/nginx/nginx.conf
 
 chmod 0744 /etc/nginx/nginx.conf
 cat >> /etc/nginx/nginx.conf << EOF
-user nginx;
+user hotdog;
 
 worker_processes auto;
 worker_rlimit_nofile 65535;
