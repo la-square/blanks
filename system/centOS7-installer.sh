@@ -71,7 +71,6 @@ chown -R hotdog:hotdog /home/hotdog
 mkdir -p /home/hotdog/$APP_NAME/djapp
 mkdir -p /home/hotdog/$APP_NAME/media
 mkdir -p /home/hotdog/$APP_NAME/logs
-mkdir -p /home/hotdog/$APP_NAME/static
 
 chown -R hotdog:hotdog /home/hotdog
 
