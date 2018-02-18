@@ -67,7 +67,6 @@ update-alternatives --set editor /usr/bin/vim.basic
 #-> prepair user
 useradd -m hotdog -s /bin/bash
 
-chown -R hotdog:hotdog /home/hotdog
 mkdir -p /home/hotdog/$APP_NAME/djapp
 mkdir -p /home/hotdog/$APP_NAME/media
 mkdir -p /home/hotdog/$APP_NAME/logs
