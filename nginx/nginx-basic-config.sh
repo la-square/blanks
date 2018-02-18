@@ -27,7 +27,6 @@ rm -rf /etc/nginx/fastcgi_params.default
 rm -rf /etc/nginx/nginx.conf
 rm -rf /etc/nginx/nginx.conf.default
 
-rm -rf /etc/nginx/uwsgi_params
 rm -rf /etc/nginx/uwsgi_params.default
 
 rm -rf /etc/nginx/scgi_params
