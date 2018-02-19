@@ -65,4 +65,5 @@ rm -rf $components_path
 
 #----->
 #clone deploy-script
-cp /root/basic-deploy.sh /home/hotdog/$project_name/djapp/installer.sh
+mkdir /home/hotdog/$project_name/djapp/common
+cp /root/basic-deploy.sh /home/hotdog/$project_name/djapp/common/installer.sh
