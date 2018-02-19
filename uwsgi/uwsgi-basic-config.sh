@@ -40,6 +40,7 @@ touch /etc/uwsgi/main_uwsgi.ini
 cat >> /etc/uwsgi/main_uwsgi.ini << EOF
 [uwsgi]
 main_uwsgi = /etc/uwsgi/vassals
+pidfile=/run/.${APP_NAME}_uwsgi.pid
 uid = hotdog
 gid = hotdog
 master = true
