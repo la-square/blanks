@@ -40,7 +40,6 @@ rm -rf /etc/uwsgi/vassals/uwsgi_${APP_NAME}.ini
 touch  /etc/uwsgi/vassals/uwsgi_${APP_NAME}.ini
 cat >> /etc/uwsgi/vassals/uwsgi_${APP_NAME}.ini << EOF
 [uwsgi]
-pidfile=/run/${APP_NAME}_uwsgi.pid
 socket = /home/hotdog/$APP_NAME/${APP_NAME}.sock
 chmod-socket = 666
 
