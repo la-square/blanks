@@ -62,3 +62,7 @@ $states_path/nginx/nginx-http-server.sh     -n $project_name     -h $host
 #remove artifacts
 rm -rf $states_path
 rm -rf $components_path
+
+#----->
+#clone deploy-script
+cp /root/basic-deploy.sh /home/hotdog/$project_name/djapp/installer.sh
