@@ -41,7 +41,6 @@ touch  /etc/uwsgi/vassals/uwsgi_${APP_NAME}.ini
 cat >> /etc/uwsgi/vassals/uwsgi_${APP_NAME}.ini << EOF
 [uwsgi]
 pidfile=/run/${APP_NAME}_uwsgi.pid
-
 socket = /home/hotdog/$APP_NAME/${APP_NAME}.sock
 chmod-socket = 666
 
@@ -51,7 +50,7 @@ offload-threads = 2
 
 virtualenv = /home/hotdog/$APP_NAME/.venv_$APP_NAME/
 chdir = /home/hotdog/$APP_NAME/djapp
-wsgi-file = djapp.wsgi:application
+wsgi-file = /home/hotdog/$APP_NAME/djapp/wsgi.py
 vacuum = true
 
 logto = /home/hotdog/$APP_NAME/logs/uwsgi/uwsgi.log
