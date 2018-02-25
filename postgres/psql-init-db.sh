@@ -75,6 +75,10 @@ fi
 #DB operations
 chown -R hotdog:hotdog /home/hotdog
 
+printf "${CYAN}Prepair database...${NC}\n"
+
 sudo -u postgres psql postgres -c "CREATE DATABASE ${DB_NAME};" 2>&1 > /dev/null 2>/dev/null
 sudo -u postgres psql postgres -c "CREATE USER ${DB_USER} WITH PASSWORD '${DB_PASS}';" 2>&1 > /dev/null 2>/dev/null
 sudo -u postgres psql postgres -c "GRANT ALL PRIVILEGES ON DATABASE ${DB_NAME} TO ${DB_USER};" 2>&1 > /dev/null 2>/dev/null
+
+printf "database...         ${GREEN}ok${NC}\n"
