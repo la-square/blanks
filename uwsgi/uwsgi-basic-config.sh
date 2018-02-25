@@ -53,9 +53,9 @@ EOF
 #----------------------------------------------------------------------------
 #Prepair uwsgi daemon
 
-rm -rf /etc/systemd/system/uwsgi.service
-touch /etc/systemd/system/uwsgi.service
-cat >> /etc/systemd/system/uwsgi.service << EOF
+rm -rf /etc/systemd/system/uwsgi_$APP_NAME.service
+touch /etc/systemd/system/uwsgi_$APP_NAME.service
+cat >> /etc/systemd/system/uwsgi.service_$APP_NAME << EOF
 [Unit]
 Description=uWSGI
 After=syslog.target
