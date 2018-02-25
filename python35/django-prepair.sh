@@ -49,7 +49,7 @@ python3.5 -m venv $venv_path
 source $venv_path/bin/activate
 
 chown -R hotdog:hotdog /home/hotdog
-printf "${GREEN}project venv was created${NC}\n"
+printf "project venv was created\n"
 
 #----------------------------------------------------------------------------
 #Install required pkgs
