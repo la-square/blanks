@@ -66,9 +66,10 @@ yes Y | yum install postgresql-devel			2>&1 > /dev/null
 yes Y | yum install postgresql-contrib 			2>&1 > /dev/null
 printf "postgresql...   ${GREEN}ok${NC}\n"
 
-yes Y | yum -y install https://centos7.iuscommunity.org/ius-release.rpm 2>&1 > /dev/null
+yes Y | yum -y install https://centos7.iuscommunity.org/ius-release.rpm 2>&1 > /dev/null 2 > /dev/null
 if [ "$?" -ne "0" ]; then
 	echo "Submission failed"
+	exit 1
 fi
 echo "Submission successful."
 
