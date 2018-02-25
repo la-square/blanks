@@ -36,29 +36,45 @@ do
 done
 
 if [[ $DB_NAME = "" ]]; then
-	echo "ERR: forgot DB_NAME attr."
+	printf "${RED}ERR: forgot DB_NAME attr${NC}\n"
+	printf "${RED}psql-init-db.sh was skipped.${NC}\n"
 	exit 1
 fi
 
 if [[ $DB_USER = "" ]]; then
-	echo "ERR: forgot DB_USER attr."
+	printf "${RED}ERR: forgot DB_USER attr${NC}\n"
+	printf "${RED}psql-init-db.sh was skipped.${NC}\n"
 	exit 1
 fi
 
 if [[ $DB_PASS = "" ]]; then
-	echo "ERR: forgot DB_PASS attr."
+	printf "${RED}ERR: forgot DB_PASS attr${NC}\n"
+	printf "${RED}psql-init-db.sh was skipped.${NC}\n"
 	exit 1
 fi
 
 if [[ $IS_FORCE = "force" ]]; then
-    sudo -u postgres psql postgres -c "DROP DATABASE ${DB_NAME};"
-    sudo -u postgres psql postgres -c "DROP USER ${DB_USER};"
+	printf "${CYAN}Use force option...${NC}\n"
+    sudo -u postgres psql postgres -c "DROP DATABASE ${DB_NAME};" 2>&1 > /dev/null 2>/dev/shm/c1stderr
+    if [ "$?" -ne "0" ]; then
+		err=$(cat /dev/shm/c1stderr)
+		printf "${RED}$err${NC}\n"
+	else 
+		printf "Drop db...          ${GREEN}ok${NC}\n"
+	fi
+    sudo -u postgres psql postgres -c "DROP USER ${DB_USER};"     2>&1 > /dev/null 2>/dev/shm/c1stderr
+    if [ "$?" -ne "0" ]; then
+		err=$(cat /dev/shm/c1stderr)
+		printf "${RED}$err${NC}\n"
+	else 
+		printf "Drop user...        ${GREEN}ok${NC}\n"
+	fi
 fi
 
 #----------------------------------------------------------------------------
 #DB operations
 chown -R hotdog:hotdog /home/hotdog
 
-sudo -u postgres psql postgres -c "CREATE DATABASE ${DB_NAME};"
-sudo -u postgres psql postgres -c "CREATE USER ${DB_USER} WITH PASSWORD '${DB_PASS}';"
-sudo -u postgres psql postgres -c "GRANT ALL PRIVILEGES ON DATABASE ${DB_NAME} TO ${DB_USER};"
+sudo -u postgres psql postgres -c "CREATE DATABASE ${DB_NAME};" 2>&1 > /dev/null 2>/dev/null
+sudo -u postgres psql postgres -c "CREATE USER ${DB_USER} WITH PASSWORD '${DB_PASS}';" 2>&1 > /dev/null 2>/dev/null
+sudo -u postgres psql postgres -c "GRANT ALL PRIVILEGES ON DATABASE ${DB_NAME} TO ${DB_USER};" 2>&1 > /dev/null 2>/dev/null
