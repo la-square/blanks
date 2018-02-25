@@ -56,7 +56,7 @@ if [ "$?" -ne "0" ]; then
 	err=$(cat /dev/shm/c1stderr)
 	printf "${RED}$err${NC}\n"
 else 
-	printf "update...       ${GREEN}ok${NC}\n"
+	printf "update...           ${GREEN}ok${NC}\n"
 fi
 
 yes Y | yum install gcc 						2>&1 > /dev/null 2>/dev/shm/c1stderr
@@ -64,7 +64,7 @@ if [ "$?" -ne "0" ]; then
 	err=$(cat /dev/shm/c1stderr)
 	printf "${RED}$err${NC}\n"
 else 
-	printf "gcc...          ${GREEN}ok${NC}\n"
+	printf "gcc...              ${GREEN}ok${NC}\n"
 fi
 
 yes Y | yum install sudo 						2>&1 > /dev/null 2>/dev/shm/c1stderr
@@ -72,7 +72,7 @@ if [ "$?" -ne "0" ]; then
 	err=$(cat /dev/shm/c1stderr)
 	printf "${RED}$err${NC}\n"
 else 
-	printf "sudo...         ${GREEN}ok${NC}\n"
+	printf "sudo...             ${GREEN}ok${NC}\n"
 fi
 
 yes Y | yum install systemd 					2>&1 > /dev/null 2>/dev/shm/c1stderr
@@ -80,7 +80,7 @@ if [ "$?" -ne "0" ]; then
 	err=$(cat /dev/shm/c1stderr)
 	printf "${RED}$err${NC}\n"
 else 
-	printf "systemd...      ${GREEN}ok${NC}\n"
+	printf "systemd...          ${GREEN}ok${NC}\n"
 fi
 
 yes Y | yum install memcached 					2>&1 > /dev/null 2>/dev/shm/c1stderr
@@ -88,7 +88,7 @@ if [ "$?" -ne "0" ]; then
 	err=$(cat /dev/shm/c1stderr)
 	printf "${RED}$err${NC}\n"
 else 
-	printf "memcached...    ${GREEN}ok${NC}\n"
+	printf "memcached...        ${GREEN}ok${NC}\n"
 fi
 
 yes Y | yum install postgresql-server 			2>&1 > /dev/null 2>/dev/shm/c1stderr
@@ -106,7 +106,7 @@ if [ "$?" -ne "0" ]; then
 	err=$(cat /dev/shm/c1stderr)
 	printf "${RED}$err${NC}\n"
 else 
-	printf "postgresql...   ${GREEN}ok${NC}\n"
+	printf "postgresql...       ${GREEN}ok${NC}\n"
 fi
 
 yes Y | yum -y install https://centos7.iuscommunity.org/ius-release.rpm 2>&1 > /dev/null 2>/dev/null
@@ -125,7 +125,7 @@ if [ "$?" -ne "0" ]; then
 	err=$(cat /dev/shm/c1stderr)
 	printf "${RED}$err${NC}\n"
 else 
-	printf "python35...     ${GREEN}ok${NC}\n"
+	printf "python35...         ${GREEN}ok${NC}\n"
 fi
 
 yum -y install nginx 							2>&1 > /dev/null 2>/dev/shm/c1stderr
@@ -133,7 +133,7 @@ if [ "$?" -ne "0" ]; then
 	err=$(cat /dev/shm/c1stderr)
 	printf "${RED}$err${NC}\n"
 else 
-	printf "nginx...        ${GREEN}ok${NC}\n"
+	printf "nginx...            ${GREEN}ok${NC}\n"
 fi
 
 
@@ -145,7 +145,7 @@ printf "${CYAN}Init work environment...${NC}\n"
 #-> vim configs
 wget -O ~/.vimrc http://dumpz.org/25712/nixtext/ 	--quiet
 update-alternatives --set editor /usr/bin/vim.basic 
-printf "vim configs...  ${GREEN}ok${NC}\n"
+printf "vim configs...      ${GREEN}ok${NC}\n"
 
 #-> prepair user
 useradd -m hotdog -s /bin/bash						2>&1 > /dev/null 2>/dev/null
@@ -155,7 +155,7 @@ mkdir -p /home/hotdog/$APP_NAME/media				2>&1 > /dev/null
 mkdir -p /home/hotdog/$APP_NAME/logs				2>&1 > /dev/null
 
 chown -R hotdog:hotdog /home/hotdog 				2>&1 > /dev/null
-printf "prepair user... ${GREEN}ok${NC}\n"
+printf "prepair user...     ${GREEN}ok${NC}\n"
 
 
 #----------------------------------------------------------------------------
@@ -173,7 +173,7 @@ if [ "$?" -ne "0" ]; then
 	err=$(cat /dev/shm/c1stderr)
 	printf "${RED}$err${NC}\n"
 else 
-	printf "postgresql.service was started\n"
+	printf "postgresql.service  ${GREEN}ok${NC}\n"
 fi
 
 #-> nginx
@@ -182,5 +182,5 @@ if [ "$?" -ne "0" ]; then
 	err=$(cat /dev/shm/c1stderr)
 	printf "${RED}$err${NC}\n"
 else 
-	printf "nginx.service was started\n"
+	printf "nginx.service       ${GREEN}ok${NC}\n"
 fi

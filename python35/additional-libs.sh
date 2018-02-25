@@ -57,5 +57,5 @@ if [ "$?" -ne "0" ]; then
 	err=$(cat /dev/shm/c1stderr)
 	printf "${RED}$err${NC}\n"
 else 
-	printf "$PYTHON_PKG...        ${GREEN}ok${NC}\n"
+	printf "$PYTHON_PKG...          ${GREEN}ok${NC}\n"
 fi
