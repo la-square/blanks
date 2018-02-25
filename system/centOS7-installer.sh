@@ -173,7 +173,7 @@ if [ "$?" -ne "0" ]; then
 	err=$(cat /dev/shm/c1stderr)
 	printf "${RED}$err${NC}\n"
 else 
-	printf "postgresql.service  ${GREEN}ok${NC}\n"
+	printf "postgresql.service  ${GREEN}active${NC}\n"
 fi
 
 #-> nginx
@@ -182,5 +182,5 @@ if [ "$?" -ne "0" ]; then
 	err=$(cat /dev/shm/c1stderr)
 	printf "${RED}$err${NC}\n"
 else 
-	printf "nginx.service       ${GREEN}ok${NC}\n"
+	printf "nginx.service       ${GREEN}active${NC}\n"
 fi
