@@ -45,42 +45,101 @@ fi
 
 printf "${CYAN}Start install system packages...${NC}\n"
 
-yes Y | yum install epel-release 				2>&1 > /dev/null
-yes Y | yum update 								2>&1 > /dev/null
-printf "update...       ${GREEN}ok${NC}\n"
-
-yes Y | yum install gcc 						2>&1 > /dev/null
-printf "gcc...          ${GREEN}ok${NC}\n"
-
-yes Y | yum install sudo 						2>&1 > /dev/null
-printf "sudo...         ${GREEN}ok${NC}\n"
-
-yes Y | yum install systemd 					2>&1 > /dev/null
-printf "systemd...      ${GREEN}ok${NC}\n"
-
-yes Y | yum install memcached 					2>&1 > /dev/null
-printf "memcached...    ${GREEN}ok${NC}\n"
-
-yes Y | yum install postgresql-server 			2>&1 > /dev/null
-yes Y | yum install postgresql-devel			2>&1 > /dev/null
-yes Y | yum install postgresql-contrib 			2>&1 > /dev/null
-printf "postgresql...   ${GREEN}ok${NC}\n"
-
-yes Y | yum -y install https://centos7.iuscommunity.org/ius-release.rpm 2>&1 > /dev/null 2 > /dev/null
+yes Y | yum install epel-release 				2>&1 > /dev/null 2>/dev/shm/c1stderr
 if [ "$?" -ne "0" ]; then
-	echo "Submission failed"
-	exit 1
+	err=$(cat /dev/shm/c1stderr)
+	printf "${RED}$err${NC}\n"
 fi
-echo "Submission successful."
 
+yes Y | yum update 								2>&1 > /dev/null 2>/dev/shm/c1stderr
+if [ "$?" -ne "0" ]; then
+	err=$(cat /dev/shm/c1stderr)
+	printf "${RED}$err${NC}\n"
+else 
+	printf "update...       ${GREEN}ok${NC}\n"
+fi
 
-yes Y | yum -y install python35u 				2>&1 > /dev/null
-yes Y | yum -y install python35u-pip			2>&1 > /dev/null
-yes Y | yum -y install python35u-devel.x86_64	2>&1 > /dev/null
-printf "python35...     ${GREEN}ok${NC}\n"
+yes Y | yum install gcc 						2>&1 > /dev/null 2>/dev/shm/c1stderr
+if [ "$?" -ne "0" ]; then
+	err=$(cat /dev/shm/c1stderr)
+	printf "${RED}$err${NC}\n"
+else 
+	printf "gcc...          ${GREEN}ok${NC}\n"
+fi
 
-yum -y install nginx 							2>&1 > /dev/null
-printf "nginx...        ${GREEN}ok${NC}\n"
+yes Y | yum install sudo 						2>&1 > /dev/null 2>/dev/shm/c1stderr
+if [ "$?" -ne "0" ]; then
+	err=$(cat /dev/shm/c1stderr)
+	printf "${RED}$err${NC}\n"
+else 
+	printf "sudo...         ${GREEN}ok${NC}\n"
+fi
+
+yes Y | yum install systemd 					2>&1 > /dev/null 2>/dev/shm/c1stderr
+if [ "$?" -ne "0" ]; then
+	err=$(cat /dev/shm/c1stderr)
+	printf "${RED}$err${NC}\n"
+else 
+	printf "systemd...      ${GREEN}ok${NC}\n"
+fi
+
+yes Y | yum install memcached 					2>&1 > /dev/null 2>/dev/shm/c1stderr
+if [ "$?" -ne "0" ]; then
+	err=$(cat /dev/shm/c1stderr)
+	printf "${RED}$err${NC}\n"
+else 
+	printf "memcached...    ${GREEN}ok${NC}\n"
+fi
+
+yes Y | yum install postgresql-server 			2>&1 > /dev/null 2>/dev/shm/c1stderr
+if [ "$?" -ne "0" ]; then
+	err=$(cat /dev/shm/c1stderr)
+	printf "${RED}$err${NC}\n"
+fi
+yes Y | yum install postgresql-devel			2>&1 > /dev/null 2>/dev/shm/c1stderr
+if [ "$?" -ne "0" ]; then
+	err=$(cat /dev/shm/c1stderr)
+	printf "${RED}$err${NC}\n"
+fi
+yes Y | yum install postgresql-contrib 			2>&1 > /dev/null 2>/dev/shm/c1stderr
+if [ "$?" -ne "0" ]; then
+	err=$(cat /dev/shm/c1stderr)
+	printf "${RED}$err${NC}\n"
+else 
+	printf "postgresql...   ${GREEN}ok${NC}\n"
+fi
+
+yes Y | yum -y install https://centos7.iuscommunity.org/ius-release.rpm 2>&1 > /dev/null 2>/dev/shm/c1stderr
+if [ "$?" -ne "0" ]; then
+	err=$(cat /dev/shm/c1stderr)
+	printf "${RED}$err${NC}\n"
+fi
+
+yes Y | yum -y install python35u 				2>&1 > /dev/null 2>/dev/shm/c1stderr
+if [ "$?" -ne "0" ]; then
+	err=$(cat /dev/shm/c1stderr)
+	printf "${RED}$err${NC}\n"
+fi
+yes Y | yum -y install python35u-pip			2>&1 > /dev/null 2>/dev/shm/c1stderr
+if [ "$?" -ne "0" ]; then
+	err=$(cat /dev/shm/c1stderr)
+	printf "${RED}$err${NC}\n"
+fi
+yes Y | yum -y install python35u-devel.x86_64	2>&1 > /dev/null 2>/dev/shm/c1stderr
+if [ "$?" -ne "0" ]; then
+	err=$(cat /dev/shm/c1stderr)
+	printf "${RED}$err${NC}\n"
+else 
+	printf "python35...     ${GREEN}ok${NC}\n"
+fi
+
+yum -y install nginx 							2>&1 > /dev/null 2>/dev/shm/c1stderr
+if [ "$?" -ne "0" ]; then
+	err=$(cat /dev/shm/c1stderr)
+	printf "${RED}$err${NC}\n"
+else 
+	printf "nginx...        ${GREEN}ok${NC}\n"
+fi
 
 
 #----------------------------------------------------------------------------
