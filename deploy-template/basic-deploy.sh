@@ -105,3 +105,13 @@ else
 	echo "WARN: forgot input git repository"
 	exit 1
 fi
+
+touch .gitignore
+cat >> /.gitignore << EOF
+.DS_Store
+__pycache__
+.pyc
+EOF
+
+git add *
+
