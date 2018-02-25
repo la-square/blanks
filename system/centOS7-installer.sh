@@ -157,8 +157,6 @@ mkdir -p /home/hotdog/$APP_NAME/logs				2>&1 > /dev/null
 chown -R hotdog:hotdog /home/hotdog 				2>&1 > /dev/null
 printf "prepair user... ${GREEN}ok${NC}\n"
 
-printf "done.\n"
-
 
 #----------------------------------------------------------------------------
 #Prapair system services
