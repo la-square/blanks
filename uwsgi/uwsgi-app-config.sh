@@ -44,9 +44,9 @@ printf "${CYAN}Init project uwsgi config...${NC}\n"
 mkdir /home/hotdog/$APP_NAME/logs/uwsgi 2>&1 > /dev/null
 touch /home/hotdog/$APP_NAME/logs/uwsgi/uwsgi.log
 
-rm -rf /etc/uwsgi/vassals/uwsgi_${APP_NAME}.ini
-touch  /etc/uwsgi/vassals/uwsgi_${APP_NAME}.ini
-cat >> /etc/uwsgi/vassals/uwsgi_${APP_NAME}.ini << EOF
+rm -rf /etc/uwsgi/vassals_${APP_NAME}/uwsgi_${APP_NAME}.ini
+touch  /etc/uwsgi/vassals_${APP_NAME}/uwsgi_${APP_NAME}.ini
+cat >> /etc/uwsgi/vassals_${APP_NAME}/uwsgi_${APP_NAME}.ini << EOF
 [uwsgi]
 socket = /home/hotdog/$APP_NAME/${APP_NAME}.sock
 chmod-socket = 666
