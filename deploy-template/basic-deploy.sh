@@ -25,7 +25,7 @@ django_path="/home/hotdog/$project_name/djapp"
 states_path="/root/blanks-deploy"
 components_path="/root/blanks-applications"
 
-git clone git@github.com:la-square/blanks-deploy.git
+git clone git@github.com:la-square/blanks-deploy.git 2>&1 > /dev/null
 
 
 #----->
@@ -38,10 +38,11 @@ $states_path/postgres/psql-init-db.sh       -n db_$project_name 	-u hotdog 	-p $
 
 #----->
 #init project
-git clone git@github.com:la-square/blanks-applications.git
+git clone git@github.com:la-square/blanks-applications.git 2>&1 > /dev/null
 
 for app in ${components[*]}
 do
+	printf "prepair $app component\n"
 	for entry in $components_path/$app/*
 	do
 		rm -rf $django_path/$entry
@@ -51,7 +52,7 @@ do
 	if [[ $app = "engine" ]]; then
 		/usr/bin/bash $django_path/engine/component_deploy.sh $project_name $host db_$project_name hotdog $db_passwd
 	fi
-
+	printf "OK.\n"
 done
 
 
