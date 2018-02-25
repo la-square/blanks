@@ -13,26 +13,6 @@ GREEN='\033[0;32m'
 CYAN='\033[0;36m'
 NC='\033[0m'
 
-#----------------------------------------------------------------------------
-#Check options
-
-while [[ $# -gt 1 ]]
-do
-	key="$1"
-	case $key in
-		-n|--name)
-		APP_NAME=$2
-		shift ;;
-	esac
-	shift
-done
-
-if [[ $APP_NAME = "" ]]; then
-	printf "${RED}ERR: forgot APP_NAME attr${NC}\n"
-	printf "${RED}system-centOS7-installer.sh was skipped.${NC}\n"
-	exit 1
-fi
-
 
 #----------------------------------------------------------------------------
 #Prepair nginx

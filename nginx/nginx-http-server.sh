@@ -40,7 +40,7 @@ fi
 
 if [[ $HOST_NAME = "" ]]; then
     printf "${RED}ERR: forgot HOST_NAME attr${NC}\n"
-    printf "${RED}system-centOS7-installer.sh was skipped.${NC}\n"
+    printf "${RED}nginx-http-server.sh was skipped.${NC}\n"
     exit 1
 fi
 
