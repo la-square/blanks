@@ -68,10 +68,6 @@ $states_path/nginx/nginx-basic-config.sh
 $states_path/nginx/nginx-http-server.sh     -n $project_name     -h $host
 
 #----->
-#git init
-$states_path/init_git/initialize_git.sh     -u $git_user  -m $git_mail -r $git_repository -d $django_path
-
-#----->
 #remove artifacts
 rm -rf $states_path
 rm -rf $components_path
