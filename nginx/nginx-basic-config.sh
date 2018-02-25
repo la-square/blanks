@@ -8,14 +8,42 @@
 #Require:
 #installed nginx service
 
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+CYAN='\033[0;36m'
+NC='\033[0m'
+
+#----------------------------------------------------------------------------
+#Check options
+
+while [[ $# -gt 1 ]]
+do
+	key="$1"
+	case $key in
+		-n|--name)
+		APP_NAME=$2
+		shift ;;
+	esac
+	shift
+done
+
+if [[ $APP_NAME = "" ]]; then
+	printf "${RED}ERR: forgot APP_NAME attr${NC}\n"
+	printf "${RED}system-centOS7-installer.sh was skipped.${NC}\n"
+	exit 1
+fi
+
+
 #----------------------------------------------------------------------------
 #Prepair nginx
 
-mkdir /etc/nginx/sites-available
-mkdir /etc/nginx/sites-enabled
+printf "${CYAN}Cleanup not used configs...${NC}\n"
 
-mkdir /etc/nginx/conf.d
-mv /etc/nginx/mime.types /etc/nginx/conf.d
+mkdir -p /etc/nginx/sites-available             2>&1 > /dev/null
+mkdir -p /etc/nginx/sites-enabled               2>&1 > /dev/null
+
+mkdir -p /etc/nginx/conf.d                      2>&1 > /dev/null
+mv /etc/nginx/mime.types /etc/nginx/conf.d      > /dev/null 2>&1
 rm -rf /etc/nginx/mime.types.default
 
 rm -rf /etc/nginx/fastcgi.conf
@@ -36,6 +64,8 @@ rm -rf /etc/nginx/default.d
 
 #----------------------------------------------------------------------------
 #Init nginx.conf
+
+printf "${CYAN}Init main nginx settings...${NC}\n"
 
 touch /etc/nginx/nginx.conf
 
@@ -101,5 +131,14 @@ EOF
 #Restart daemon
 chown -R hotdog:hotdog /home/hotdog
 
+printf "${CYAN}Start nginx...${NC}\n"
+
 systemctl daemon-reload
-systemctl restart nginx.service
+systemctl restart nginx.service 2>/dev/shm/c1stderr
+if [ "$?" -ne "0" ]; then
+	err=$(cat /dev/shm/c1stderr)
+	printf "${RED}$err${NC}\n"
+else 
+	printf "nginx.service       ${GREEN}active${NC}\n"
+fi
+

@@ -10,6 +10,11 @@
 #Require:
 #installed nginx service and confugered nginx.conf
 
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+CYAN='\033[0;36m'
+NC='\033[0m'
+
 #----------------------------------------------------------------------------
 #Check options
 
@@ -28,22 +33,27 @@ do
 done
 
 if [[ $APP_NAME = "" ]]; then
-    echo "ERR: forgot APP_NAME attr."
+    printf "${RED}ERR: forgot APP_NAME attr${NC}\n"
+    printf "${RED}system-centOS7-installer.sh was skipped.${NC}\n"
     exit 1
 fi
 
 if [[ $HOST_NAME = "" ]]; then
-    echo "ERR: forgot HOST_NAME attr."
+    printf "${RED}ERR: forgot HOST_NAME attr${NC}\n"
+    printf "${RED}system-centOS7-installer.sh was skipped.${NC}\n"
     exit 1
 fi
 
 #----->
 #remove symlinks when rm rf
 #proxy set header err
+
+printf "${CYAN}Init application nginx settings...${NC}\n"
+
 rm -rf /etc/nginx/sites-available/$APP_NAME
 touch  /etc/nginx/sites-available/$APP_NAME
 
-mkdir /home/hotdog/$APP_NAME/logs/nginx
+mkdir -p /home/hotdog/$APP_NAME/logs/nginx 2>&1 > /dev/null
 touch /home/hotdog/$APP_NAME/logs/nginx/error.log
 touch /home/hotdog/$APP_NAME/logs/nginx/access.log
 
@@ -105,5 +115,14 @@ ln -s /etc/nginx/sites-available/$APP_NAME /etc/nginx/sites-enabled/
 #Restart daemon
 chown -R hotdog:hotdog /home/hotdog
 
+printf "${CYAN}Start nginx...${NC}\n"
+
 systemctl daemon-reload
-systemctl restart nginx.service
+systemctl restart nginx.service 2>/dev/shm/c1stderr
+if [ "$?" -ne "0" ]; then
+    err=$(cat /dev/shm/c1stderr)
+    printf "${RED}$err${NC}\n"
+else 
+    printf "nginx.service       ${GREEN}active${NC}\n"
+fi
+
