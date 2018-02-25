@@ -66,5 +66,5 @@ EOF
 chown -R hotdog:hotdog /home/hotdog
 
 systemctl daemon-reload
-systemctl restart uwsgi.service
+systemctl restart uwsgi_$APP_NAME.service
 
