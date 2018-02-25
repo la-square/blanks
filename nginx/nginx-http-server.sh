@@ -108,7 +108,7 @@ server {
 
 EOF
 
-ln -s /etc/nginx/sites-available/$APP_NAME /etc/nginx/sites-enabled/ > /dev/null 2>&1
+ln -s /etc/nginx/sites-available/$APP_NAME /etc/nginx/sites-enabled/
 
 
 #----------------------------------------------------------------------------
