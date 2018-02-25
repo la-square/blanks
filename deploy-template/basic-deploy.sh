@@ -25,7 +25,7 @@ django_path="/home/hotdog/$project_name/djapp"
 states_path="/root/blanks-deploy"
 components_path="/root/blanks-applications"
 
-git clone git@github.com:la-square/blanks-deploy.git 2>&1 > /dev/null
+git clone git@github.com:la-square/blanks-deploy.git --quiet
 
 
 #----->
@@ -38,7 +38,7 @@ $states_path/postgres/psql-init-db.sh       -n db_$project_name 	-u hotdog 	-p $
 
 #----->
 #init project
-git clone git@github.com:la-square/blanks-applications.git 2>&1 > /dev/null
+git clone git@github.com:la-square/blanks-applications.git --quiet
 
 for app in ${components[*]}
 do

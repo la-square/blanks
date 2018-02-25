@@ -10,6 +10,11 @@
 #Require:
 #installed python-uwsgi, uwsgi-basic-config
 
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+CYAN='\033[0;36m'
+NC='\033[0m'
+
 #----------------------------------------------------------------------------
 #Check options
 
@@ -25,15 +30,18 @@ do
 done
 
 if [[ $APP_NAME = "" ]]; then
-    echo "ERR: forgot APP_NAME attr."
-    exit 1
+	printf "${RED}ERR: forgot APP_NAME attr${NC}\n"
+	printf "${RED}system-centOS7-installer.sh was skipped.${NC}\n"
+	exit 1
 fi
 
 
 #----------------------------------------------------------------------------
 #Prepair uwsgi
 
-mkdir /home/hotdog/$APP_NAME/logs/uwsgi
+printf "${CYAN}Init project uwsgi config...${NC}\n"
+
+mkdir /home/hotdog/$APP_NAME/logs/uwsgi 2>&1 > /dev/null
 touch /home/hotdog/$APP_NAME/logs/uwsgi/uwsgi.log
 
 rm -rf /etc/uwsgi/vassals/uwsgi_${APP_NAME}.ini
@@ -61,10 +69,19 @@ disable-write-exception = true
 
 EOF
 
+printf "uwsgi config...     ${GREEN}ok${NC}\n"
+
 #----------------------------------------------------------------------------
 #Run uwsgi
 chown -R hotdog:hotdog /home/hotdog
 
-systemctl daemon-reload
-systemctl restart uwsgi_$APP_NAME.service
+printf "${CYAN}Restart uwsgi service...${NC}\n"
 
+systemctl daemon-reload
+systemctl restart uwsgi_$APP_NAME.service 2>/dev/shm/c1stderr
+if [ "$?" -ne "0" ]; then
+	err=$(cat /dev/shm/c1stderr)
+	printf "${RED}$err${NC}\n"
+else 
+	printf "uwsgi.service       ${GREEN}active${NC}\n"
+fi
