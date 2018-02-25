@@ -42,9 +42,9 @@ fi
 printf "${CYAN}Init uwsgi main config...${NC}\n"
 
 mkdir -p /etc/uwsgi/vassals_$APP_NAME      2>&1 > /dev/null
-rm -rf /etc/uwsgi/main_uwsgi.ini
 
-touch /etc/uwsgi/main_uwsgi.ini
+rm -rf /etc/uwsgi/main_uwsgi_$APP_NAME.ini
+touch /etc/uwsgi/main_uwsgi_$APP_NAME.ini
 cat >> /etc/uwsgi/main_uwsgi_$APP_NAME.ini << EOF
 [uwsgi]
 main_uwsgi = /etc/uwsgi/vassals_$APP_NAME
