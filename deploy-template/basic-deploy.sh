@@ -67,6 +67,9 @@ $states_path/uwsgi/uwsgi-app-config.sh 		-n $project_name
 $states_path/nginx/nginx-basic-config.sh
 $states_path/nginx/nginx-http-server.sh     -n $project_name     -h $host
 
+#----->
+#git init
+$states_path/init_git/initialize_git.sh     -u $git_user  -m $git_mail -r $git_repository -d $django_path
 
 #----->
 #remove artifacts
@@ -77,35 +80,3 @@ rm -rf $components_path
 #clone deploy-script
 mkdir /home/hotdog/$project_name/djapp/common
 cp /root/basic-deploy.sh /home/hotdog/$project_name/djapp/common/installer.sh
-
-
-#----->
-#init git repository
-
-cd $django_path
-git init
-
-if [[ $git_user != "username" ]]; then
-	git config --global user.name "$git_user"
-else
-	echo "WARN: forgot input git username"
-	exit 1
-fi 
-
-if [[ $git_mail != "mail" ]]; then
-	git config --global user.email $git_mail
-else
-	echo "WARN: forgot input git user mail"
-	exit 1
-fi 
-
-if [[ $git_repository != "repository" ]]; then
-	git remote rename origin upstream
-	git remote add origin $git_repository
-else
-	echo "WARN: forgot input git repository"
-	exit 1
-fi
-
-git add *
-
