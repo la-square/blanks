@@ -65,14 +65,14 @@ if [[ $IS_FORCE = "force" ]]; then
 		err=$(cat /dev/shm/c1stderr)
 		printf "${RED}$err${NC}\n"
 	else 
-		printf "Drop db...          ${GREEN}ok${NC}\n"
+		printf "drop db...          ${GREEN}ok${NC}\n"
 	fi
     sudo -u postgres psql postgres -c "DROP USER ${DB_USER};"     2>&1 > /dev/null 2>/dev/shm/c1stderr
     if [ "$?" -ne "0" ]; then
 		err=$(cat /dev/shm/c1stderr)
 		printf "${RED}$err${NC}\n"
 	else 
-		printf "Drop user...        ${GREEN}ok${NC}\n"
+		printf "drop user...        ${GREEN}ok${NC}\n"
 	fi
 fi
 
